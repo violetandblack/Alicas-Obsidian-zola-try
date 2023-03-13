@@ -1,27 +1,31 @@
 [build]
-command = "rm -rf __obsidian __site && mkdir __obsidian && mv * __obsidian || true && git clone https://github.com/ppeetteerrs/obsidian-zola.git __site && __site/run.sh"
+command = "rm -rf __obsidian __site && mkdir __obsidian && mv * __obsidian || true && git clone https://github.com/Ctrl-A-Del/obsidian-zola.git __site && __site/run.sh"
 publish = "public"
 
 [build.environment]
 # (Optional) Text in landing page button
-LANDING_BUTTON = "Click to steal some👆"
+LANDING_BUTTON = "<span class='hvr-grow'>✨ Enter my Universe ✨</span>"
 # (Optional) Site description on landing page
-LANDING_DESCRIPTION = "I have nothing but intelligence."
+LANDING_DESCRIPTION = "
+	<div style='margin: 1rem;'>
+		May I take your coat?🧥 Thank you! Now have fun while browsing around! 🌏 
+	</div>
+"
 # (REQUIRED) The Markdown page linked to landing page button (e.g. put home for ./home.md)
-LANDING_PAGE = "home"
+LANDING_PAGE = "about/about-this/" 
 # (Optional) Site title on landing page
-LANDING_TITLE = "I love obsidian-zola! 💖"
+LANDING_TITLE = "<span class='hvr-grow'>Hey, I am Alica!👾</span>"
 PYTHON_VERSION = "3.8"
 # (REQUIRED) Site repo URL
-REPO_URL = "https://github.com/ppeetteerrs/obsidian-zola"
+REPO_URL = "https://github.com/violetandblack/Alica-M-ller"
 # (Optional) Site title in navbar
-SITE_TITLE = "Someone's Second 🧠"
+SITE_TITLE = "Alica's Second 🧠"
 # (Optional) Site title in browser tab (leave blank to use SITE_TITLE)
-SITE_TITLE_TAB = ""
+SITE_TITLE_TAB = "Alica Müller"
 # (REQUIRED) Netlify site URL
-SITE_URL = ""
+SITE_URL = "https://alicamueller.com"
 # (Optional) Site Timezone
-TIMEZONE = "Asia/Hong_Kong"
+TIMEZONE = "Berlin"
 ZOLA_VERSION = "0.15.2"
 # (Optional, default title) How to sort notes inside each section on the right sidebar ("date" or "title"). Subsections on side bar are sorted by title, the sort order cannot be changed.
 SORT_BY = "title"
@@ -35,10 +39,14 @@ HOME_GRAPH = "y"
 PAGE_GRAPH = "y"
 # (Optional, default false) Whether sidebar sections should be collapsed by default.
 SIDEBAR_COLLAPSED = ""
-# (Optional, default blank) Additional footer content.
-FOOTER = ""
+FOOTER = "
+<div style='display: flex; justify-content: space-between;'>
+	<a href=''>Legal Notice</a>
+	<a href=''>Terms and Conditions</a>
+	<a href=''>Privacy</a>
+</div>"
 # (Optional, default main) Root section name.
-ROOT_SECTION_NAME = "main"
+ROOT_SECTION_NAME = "About"
 # (Optional) visjs graph options. Can remove if desired.
 GRAPH_OPTIONS = """
         {
@@ -53,6 +61,9 @@ GRAPH_OPTIONS = """
         		scaling: {
         			label: {
         				enabled: true,
+						drawThreshold: 11,
+						min: 5,
+						max: 15
         			},
         		},
         	},
@@ -70,7 +81,28 @@ GRAPH_OPTIONS = """
         	height: "100%",
         	width: "100%",
         	physics: {
-        		solver: "repulsion",
+        		solver: "repulsion"
         	},
         }
         """
+
+[[plugins]]
+package = "netlify-plugin-submit-sitemap"
+
+[plugins.inputs]
+
+# The base url of your site (optional, default = main URL set in Netlify)
+baseUrl = "https://alicamueller.com"
+
+# Path to the sitemap URL (optional, default = /sitemap.xml)
+sitemapPath = "/sitemap.xml"
+
+# Time in seconds to not submit the sitemap after successful submission
+ignorePeriod = 0
+
+# Enabled providers to submit sitemap to (optional, default = 'google', 'bing', 'yandex'). Possible providers are currently only 'google', 'bing', 'yandex'.
+providers = [
+  "google",
+  "bing",
+  "yandex",
+]
